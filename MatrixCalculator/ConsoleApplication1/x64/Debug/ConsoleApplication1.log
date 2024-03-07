@@ -1,0 +1,6 @@
+﻿  ConsoleApplication1.cpp
+C:\Users\farzi.DESKTOP-59N4VH5\source\repos\MatrixCalculator\ConsoleApplication1\ConsoleApplication1.cpp(10,11): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\farzi.DESKTOP-59N4VH5\source\repos\MatrixCalculator\ConsoleApplication1\ConsoleApplication1.cpp(11,12): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\farzi.DESKTOP-59N4VH5\source\repos\MatrixCalculator\ConsoleApplication1\ConsoleApplication1.cpp(12,11): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\farzi.DESKTOP-59N4VH5\source\repos\MatrixCalculator\ConsoleApplication1\ConsoleApplication1.cpp(13,11): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  ConsoleApplication1.vcxproj -> C:\Users\farzi.DESKTOP-59N4VH5\source\repos\MatrixCalculator\x64\Debug\ConsoleApplication1.exe
