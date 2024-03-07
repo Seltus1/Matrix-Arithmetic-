@@ -1,11 +1,50 @@
-// ConsoleApplication1.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
-
 #include <iostream>
 #include <vector>
-#include "MatrixMultiplier.h"
 using namespace std;
-std::vector<vector<int>> MultiplyMatrix(const std::vector<std::vector<int>>& A, const std::vector<std::vector<int>>& B ) {
+std::vector<vector<float>> invalidMatrix() {
+    cout << "Invalid matrix operation\n";
+    vector<vector<float>> error(1, vector<float>(1, 0));
+    return error;
+}
+
+std::vector<vector<float>> scalarMultiple(const std::vector<std::vector<float>>& A, float scalar) {
+    //Matrix A row count
+    int m = A.size();
+    //Matrix A column count
+    int n1 = A[0].size();
+
+    vector<vector<float>> result(m, vector<float>(n1));
+    for (int i = 0; i < m; i++) {
+        for (int j = 0; j < n1; j++) {
+            result[i][j] = A[i][j] * scalar;
+        }
+    }
+    return result;
+}
+
+std::vector<vector<float>> addMatrix(const std::vector<std::vector<float>>& A, const std::vector<std::vector<float>>& B) {
+    //Matrix A row count
+    int m = A.size();
+    //Matrix A column count
+    int n1 = A[0].size();
+    //Matrix B row count
+    int n = B.size();
+    //Matrix B column count
+    int p = B[0].size();
+
+    if (m != n || n1 != p) {
+        return invalidMatrix();
+    }
+    vector<vector<float>> result(m, vector<float>(n1));
+    for (int i = 0; i < m; i++) {
+        for (int j = 0; j < n1; j++) {
+            result[i][j] = A[i][j] + B[i][j];
+        }
+    }
+    return result;
+}
+
+std::vector<vector<float>> multiplyMatrix(const std::vector<std::vector<float>>& A, const std::vector<std::vector<float>>& B ) {
     //mxn, nxp
 
     //Matrix A row count
@@ -19,11 +58,9 @@ std::vector<vector<int>> MultiplyMatrix(const std::vector<std::vector<int>>& A, 
 
     // if column and rows dont match, abort
     if (n1 != n) {
-        cout << "Invalid matrix operation\n";
-        vector<vector<int>> error(1, vector<int>(1, 0));
-        return error;
+        return invalidMatrix();
     }
-    vector<vector<int>> result(m, vector<int>(p,0));
+    vector<vector<float>> result(m, vector<float>(p,0));
     //Iterate through the row elements of matrix A
     for (int i = 0; i < m; i++){
         //Iterate through the column elements of matrix B
@@ -38,9 +75,9 @@ std::vector<vector<int>> MultiplyMatrix(const std::vector<std::vector<int>>& A, 
     return result;
 }
 
-void printMatrix(const std::vector<std::vector<int>>& matrix) {
+void printMatrix(const std::vector<std::vector<float>>& matrix) {
     for (const auto& row : matrix) {
-        for (int value : row) {
+        for (float value : row) {
             std::cout << value << " ";
         }
         std::cout << std::endl;
@@ -48,34 +85,33 @@ void printMatrix(const std::vector<std::vector<int>>& matrix) {
 }
 int main()
 {
-    vector<vector<int>> A = {
+    vector<vector<float>> A = {
         {1,2,3},
         {4,5,6},
         {7,8,9}
     };
 
-    vector<vector<int>> B = {
+    vector<vector<float>> B = {
         {10,11,12},
         {13,14,15},
         {16,17,18}
     };
 
-    vector<vector<int>> C = {
+    vector<vector<float>> C = {
         {10,11,12},
         {13,14,15},
     };
 
-    vector<vector<int>> D = {
+    vector<vector<float>> D = {
         {1,2},
         {3,4},
         {5,6}
     };
 
-    printMatrix(MultiplyMatrix(A, D));
-
-    //printMatrix(MultiplyMatrix(C, D));
+    //printMatrix(multiplyMatrix(A, C));
+    //printMatrix(addMatrix(A, C));
+    printMatrix(addMatrix(A, scalarMultiple(A, -8.7)));
+    //printMatrix(multiplyMatrix(C, D));
     return 1;
 
 }
-
-
